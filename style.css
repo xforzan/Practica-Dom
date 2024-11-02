@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: whitesmoke;
+    font-family: "DM Sans", sans-serif;
+}
+
+main{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.products{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.product{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 30px;
+    gap: 10px;
+    padding: 20px;
+    flex-basis: 200px;
+    min-height: 490px;
+    box-shadow: 0px 0px 10px 1px #00000046;
+    transition: 0.5s;
+}
+
+.product:hover{
+    scale: 1.03;
+}
+
+.product h2{
+    font-size: medium;
+}
+
+.product img{
+    max-width: 200px;
+}
+
+
+.price{
+    font-weight: 600;
+    font-size: 23px;
+}
+.price::after{
+    content: " €";
+}
+
+.rating{
+    display: flex;
+    justify-content: space-between;
+}
+
+.reviews::after{
+    content: " Opiniones";
+}
+
+.stars::after{
+    content: url(./Assets/star.svg);
+}
+
+.stars{
+    display: flex;
+    align-items: start;
+    font-weight: 600;
+
+}
+
+.button{
+    background-color: black;
+    color: white;
+    padding: 10px; 
+    border: none;
+    border-radius: 30px;
+    transition: 0.5s;
+    font-weight: 500;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.button:hover{
+    scale: 1.1;
+
+}
