@@ -196,4 +196,9 @@ range.addEventListener("change", () =>{
     
 })
 
+// Filtros para telefono
 
+const filtersMobile = document.querySelector(".filters-mobile")
+const filterButton = document.createElement("button")
+filterButton.innerText= "Filtro"
+filtersMobile.appendChild(filterButton)
