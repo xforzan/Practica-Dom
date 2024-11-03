@@ -155,6 +155,6 @@ main{
         align-content: center;
     }
     .product img{
-        max-width: 300px;
+        max-width: 100%;
     }
 }
