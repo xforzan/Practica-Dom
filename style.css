@@ -153,6 +153,8 @@ main{
     .product{
         flex-basis: 80%;
         align-content: center;
-        align-items: center;
+    }
+    .product img{
+        max-width: 300px;
     }
 }
