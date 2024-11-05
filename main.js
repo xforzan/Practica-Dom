@@ -8,6 +8,7 @@ const products = [
       reviews: 250,
       image: 'https://thumb.pccomponentes.com/w-300-300/articles/1005/10057282/1639-hp-essential-255-g8-amd-3020e-8gb-256gb-ssd-156.jpg',
       link:'https://www.pccomponentes.com/hp-255-g8-amd-3020e-8gb-256gb-ssd-156',
+      storage:'256GB'
     },
     {
         name:'POCO X6 Pro 5G 12/512GB Negro Libre',
@@ -16,6 +17,7 @@ const products = [
         reviews: 355,
         image:'https://thumb.pccomponentes.com/w-530-530/articles/1081/10810987/1983-poco-x6-pro-5g-12-512gb-negro-libre-review.jpg',
         link:'https://www.pccomponentes.com/poco-x6-pro-5g-12-512gb-negro-libre',
+        storage:'512GB',
     },
     {
         name:'Apple iPhone 15 Pro 128GB Titanio Natural Libre',
@@ -24,6 +26,7 @@ const products = [
         reviews:684,
         image:'https://thumb.pccomponentes.com/w-530-530/articles/1077/10777839/140-apple-iphone-15-pro-128gb-titanio-natural-libre.jpg',
         link:'https://www.pccomponentes.com/apple-iphone-15-pro-128gb-titanio-natural-libre',
+        storage:'128GB',
     },
     {
         name:'Apple iPhone 13 128GB Medianoche Libre',
@@ -32,6 +35,7 @@ const products = [
         reviews:377,
         image:'https://thumb.pccomponentes.com/w-530-530/articles/57/578960/126-apple-iphone-13-128gb-medianoche-libre.jpg',
         link:'https://www.pccomponentes.com/apple-iphone-13-128gb-medianoche-libre',
+        storage:'128GB',
     },
     {
         name:'Móvil Samsung Galaxy S24 Ultra 12/512GB Negro Titanium Libre',
@@ -40,6 +44,7 @@ const products = [
         reviews:20774,
         image:'https://thumb.pccomponentes.com/w-530-530/articles/1081/10814365/1367-samsung-galaxy-s24-ultra-12-512gb-negro-titanium-libre.jpg',
         link:'https://www.pccomponentes.com/movil-samsung-galaxy-s24-ultra-12-512gb-negro-titanium-libre',
+        storage:'512GB',
     },
     {
         name:'Móvil Apple iPhone 16 Plus 128GB Rosa',
@@ -48,6 +53,7 @@ const products = [
         reviews:7,
         image:'https://thumb.pccomponentes.com/w-530-530/articles/1085/10855038/1480-apple-iphone-16-plus-128gb-rosa.jpg',
         link:'https://www.pccomponentes.com/movil-apple-iphone-16-plus-128gb-rosa',
+        storage:'128GB',
     },
     {
         name:'Monitor ASUS ROG Strix OLED XG27AQDMG 26.5" OLED QHD 240Hz FreeSync Premium',
@@ -56,6 +62,7 @@ const products = [
         reviews:15,
         image:'https://thumb.pccomponentes.com/w-530-530/articles/1084/10845004/178-asus-rog-strix-oled-xg27aqdmg-265-oled-qhd-240hz-freesync-premium.jpg',
         link:'',
+        storage: '',
     },
     {
         name:'Móvil Apple iPhone 16 Pro 128GB Titanio Desierto Libre',
@@ -64,6 +71,7 @@ const products = [
         reviews:13,
         image:'https://thumb.pccomponentes.com/w-530-530/articles/1085/10855053/1737-apple-iphone-16-pro-128gb-titanio-desierto-libre.jpg',
         link:'',
+        storage:'128GB',
     },
     {
         name:'ASUS ROG Strix G16 G614JIR-N4003 Intel Core i9-14900HX/32GB/1TB SSD/RTX 4070/16"',
@@ -72,6 +80,7 @@ const products = [
         reviews:312,
         image:'https://thumb.pccomponentes.com/w-530-530/articles/1081/10811698/1946-asus-rog-strix-g16-g614jir-n4003-intel-core-i9-14900hx-32gb-1tb-ssd-rtx-4070-16.jpg',
         link:'https://www.pccomponentes.com/asus-rog-strix-g16-g614jir-n4003-intel-core-i9-14900hx-32gb-1tb-ssd-rtx-4070-16',
+        storage:'1TB',
     },
     {
         name:'LG 65UT73006LA 65" LED UltraHD 4K HDR10 Pro WebOS24 AI ThinQ',
@@ -80,6 +89,7 @@ const products = [
         reviews:135,
         image:'https://thumb.pccomponentes.com/w-530-530/articles/1082/10826342/3445-lg-65ut73006la-65-led-ultrahd-4k-hdr10-pro-webos24-ai-thinq-b24af160-a94d-4331-907c-d8fa49f8e5ea.jpg',
         link:'https://www.pccomponentes.com/lg-65ut73006la-65-led-ultrahd-4k-hdr10-pro-webos24-ai-thinq',
+        storage:'8GB'
     },
   ];
 
@@ -202,3 +212,134 @@ const filtersMobile = document.querySelector(".filters-mobile")
 const filterButton = document.createElement("button")
 filterButton.innerText= "Filtro"
 filtersMobile.appendChild(filterButton)
+
+// Búsqueda
+
+
+const searchBar = document.createElement(`input`)
+const label = document.createElement(`label`)
+searchBar.type = "text"
+searchBar.placeholder = "Escribe tu búsqueda"
+searchBar.classList.add("searchBar")
+label.innerText = "Barra de búsqueda:"
+filters.appendChild(label)
+filters.appendChild(searchBar)
+
+
+const hidden = [];
+
+function check2() {
+    for (let j = hidden.length - 1; j >= 0; j--) {
+        if (hidden[j].name.toLowerCase().includes(searchBar.value.toLocaleLowerCase())) {
+            products.push(hidden[j]);
+            hidden.splice(j, 1);
+        }
+    }
+}
+
+searchBar.addEventListener("input", () => {
+    // Verifica si el campo de búsqueda no está vacío
+    if (searchBar.value == "") {
+        refresh()
+    }
+        console.log(searchBar.value)
+        for (let i = products.length - 1; i >= 0; i--) {
+            // Si el nombre del producto contiene el valor de búsqueda
+            if (!products[i].name.toLowerCase().includes(searchBar.value.toLowerCase())) {
+                 hidden.push(products[i]);
+                 products.splice(i, 1);
+                console.log("NO-incluye");
+            }
+        }
+        check2();
+    refresh();
+});
+
+
+// Capacidad
+
+
+const labelStorage = document.createElement('label')
+labelStorage.innerText= "Almacenamiento:"
+
+filters.appendChild(labelStorage)
+
+const storageList =[]
+
+for (let i=0; i<products.length; i++){
+    if(products[i].storage !== ''){
+    if(!storageList.includes(products[i].storage) )
+        storageList.push(products[i].storage)
+}
+}
+
+
+storageList.sort((a, b) => { 
+    const convertToGB = (size) => {
+        if (size.endsWith("TB")) {
+            return parseFloat(size) * 1024;
+        } else if (size.endsWith("GB")) {
+            return parseFloat(size);
+        }
+        return 0;
+    };
+    
+    return convertToGB(a) - convertToGB(b);
+});
+
+console.log(storageList)
+
+const storageFilters = document.createElement('div')
+storageFilters.classList.add("storageFilters")
+filters.appendChild(storageFilters)
+
+
+
+const hiddenProducts = [];
+
+for (let i = 0; i < storageList.length; i++) {
+    const storage = document.createElement('input');
+    storage.type = "checkbox";
+    storage.id = storageList[i];
+    storage.name = storageList[i];
+    storage.checked = true
+    
+    const labelStorage = document.createElement('label');
+    labelStorage.htmlFor = storageList[i];
+    labelStorage.innerText = storageList[i];
+
+    storageFilters.appendChild(storage);
+    storageFilters.appendChild(labelStorage);
+
+    storage.addEventListener("change", () => {
+        // Reset hiddenProducts before filtering
+        hiddenProducts.length = 0; // Clear previous hidden products
+        
+        // Collect all checked checkboxes
+        const checkedStorage = new Set();
+        for (let j = 0; j < storageList.length; j++) {
+            const checkbox = document.getElementById(storageList[j]);
+            if (checkbox.checked) {
+                checkedStorage.add(checkbox.name);
+            }
+        }
+
+        // Filter products based on checked storage types
+        for (let j = products.length - 1; j >= 0; j--) {
+            if (!checkedStorage.has(products[j].storage)) {
+                hiddenProducts.push(products[j]); // Store the hidden product
+                products.splice(j, 1); // Remove from the original list
+                for  (let k = products.length - 1; k >= 0; k--){
+                    if (hiddenProducts.has()){
+
+                    }
+                }
+            }
+        }
+
+        
+
+        // Refresh the display of products
+        refresh();
+    });
+}
