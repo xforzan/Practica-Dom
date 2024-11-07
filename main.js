@@ -61,7 +61,7 @@ const products = [
         stars:'4.7/5',
         reviews:15,
         image:'https://thumb.pccomponentes.com/w-530-530/articles/1084/10845004/178-asus-rog-strix-oled-xg27aqdmg-265-oled-qhd-240hz-freesync-premium.jpg',
-        link:'',
+        link:'https://www.pccomponentes.com/monitor-asus-rog-strix-oled-xg27aqdmg-265-oled-qhd-240hz-freesync-premium',
         storage: '0GB',
     },
     {
@@ -70,7 +70,7 @@ const products = [
         stars:'4.6/5',
         reviews:13,
         image:'https://thumb.pccomponentes.com/w-530-530/articles/1085/10855053/1737-apple-iphone-16-pro-128gb-titanio-desierto-libre.jpg',
-        link:'',
+        link:'https://www.pccomponentes.com/movil-apple-iphone-16-pro-128gb-titanio-desierto-libre',
         storage:'128GB',
     },
     {
