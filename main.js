@@ -198,8 +198,8 @@ range.addEventListener("change", () =>{
             hide.push(products[i])
             products.splice([i],1)
         }
-        check()
     } 
+    check()
     refresh()
     minValue = range.value
     min.textContent = minValue
@@ -343,5 +343,6 @@ for (let i = 0; i < storageList.length; i++) {
         refresh();
     });
 }
+
 
 
