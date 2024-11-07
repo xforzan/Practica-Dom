@@ -62,7 +62,7 @@ const products = [
         reviews:15,
         image:'https://thumb.pccomponentes.com/w-530-530/articles/1084/10845004/178-asus-rog-strix-oled-xg27aqdmg-265-oled-qhd-240hz-freesync-premium.jpg',
         link:'',
-        storage: '',
+        storage: '0GB',
     },
     {
         name:'Móvil Apple iPhone 16 Pro 128GB Titanio Desierto Libre',
@@ -297,6 +297,9 @@ filters.appendChild(storageFilters)
 
 const hiddenProducts = [];
 
+
+
+
 for (let i = 0; i < storageList.length; i++) {
     const storage = document.createElement('input');
     storage.type = "checkbox";
@@ -312,34 +315,33 @@ for (let i = 0; i < storageList.length; i++) {
     storageFilters.appendChild(labelStorage);
 
     storage.addEventListener("change", () => {
-        // Reset hiddenProducts before filtering
-        hiddenProducts.length = 0; // Clear previous hidden products
-        
-        // Collect all checked checkboxes
-        const checkedStorage = new Set();
+
         for (let j = 0; j < storageList.length; j++) {
             const checkbox = document.getElementById(storageList[j]);
+
             if (checkbox.checked) {
-                checkedStorage.add(checkbox.name);
-            }
-        }
 
-        // Filter products based on checked storage types
-        for (let j = products.length - 1; j >= 0; j--) {
-            if (!checkedStorage.has(products[j].storage)) {
-                hiddenProducts.push(products[j]); // Store the hidden product
-                products.splice(j, 1); // Remove from the original list
-                for  (let k = products.length - 1; k >= 0; k--){
-                    if (hiddenProducts.has()){
+                for (let l = hiddenProducts.length - 1; l >= 0; l--) {
+                    if (hiddenProducts[l] && hiddenProducts[l].storage === checkbox.id) {
+                        products.push(hiddenProducts[l]);
+                        hiddenProducts.splice(l, 1);
+                    }
+                }
+            } else {
 
+                for (let k = products.length - 1; k >= 0; k--) {
+                    if (products[k] && products[k].storage === checkbox.id) {
+                        hiddenProducts.push(products[k]);
+                        products.splice(k, 1);
                     }
                 }
             }
         }
-
         
 
-        // Refresh the display of products
+
         refresh();
     });
 }
+
+
