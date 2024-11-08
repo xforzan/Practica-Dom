@@ -216,7 +216,8 @@ filtersMobile.appendChild(divisor)
 divisor.appendChild(filterButton)
 
 filterButton.addEventListener("click", ()=>{
-    
+    const main = document.querySelector("main")
+    main.innerHTML= ""
 })
 
 // Búsqueda
