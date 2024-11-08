@@ -94,9 +94,10 @@ main{
 }
 
 .storageFilters{
-    display: flex;
+    display: inline-table;
     flex-direction: column;
     margin-bottom: 10px;
+    gap: 20px;
 }
 
 
