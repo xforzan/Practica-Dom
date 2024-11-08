@@ -11,7 +11,7 @@ body{
     font-family: "DM Sans", sans-serif;
 }
 
-main{
+.content{
     width: 100%;
     display: flex;
     justify-content: center;
@@ -274,4 +274,15 @@ main{
 
 .filters-popup .range{
     width: 100%;
+}
+
+
+.apply{
+    background-color: black;
+    color: white;
+    padding: 20px;
+    border: none;
+    border-radius: 30px;
+    font-size: 25px;
+
 }
