@@ -209,9 +209,15 @@ range.addEventListener("change", () =>{
 // Filtros para telefono
 
 const filtersMobile = document.querySelector(".filters-mobile")
+const divisor = document.createElement("div")
+
 const filterButton = document.createElement("button")
-filterButton.innerText= "Filtro"
-filtersMobile.appendChild(filterButton)
+filtersMobile.appendChild(divisor)
+divisor.appendChild(filterButton)
+
+filterButton.addEventListener("click", ()=>{
+    
+})
 
 // Búsqueda
 
@@ -301,6 +307,8 @@ const hiddenProducts = [];
 
 
 for (let i = 0; i < storageList.length; i++) {
+    const group = document.createElement('div')
+    group.classList.add('group')
     const storage = document.createElement('input');
     storage.type = "checkbox";
     storage.id = storageList[i];
@@ -311,8 +319,10 @@ for (let i = 0; i < storageList.length; i++) {
     labelStorage.htmlFor = storageList[i];
     labelStorage.innerText = storageList[i];
 
-    storageFilters.appendChild(storage);
-    storageFilters.appendChild(labelStorage);
+    group.appendChild(storage)
+    group.appendChild(labelStorage)
+
+    storageFilters.appendChild(group);
 
     storage.addEventListener("change", () => {
 
