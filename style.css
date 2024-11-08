@@ -280,7 +280,7 @@ body{
     border: none;
     border-radius: 30px;
     font-size: 20px;
-    width: fit-content;
+    width:max-content;
     margin: 10px;
     height: 20px;
     display: flex;
