@@ -93,6 +93,8 @@ const products = [
     },
   ];
 
+const reload = () =>{
+
 //   Código 
 const section = document.querySelector(`.products`)
 
@@ -310,8 +312,23 @@ range.addEventListener("change", () =>{
 })
 
 
-
-
+const apply = document.createElement("button")
+apply.classList.add("apply")
+apply.innerText = "Aplicar"
+apply.addEventListener("click", ()=>{
+    main.innerHTML = ""
+    const asidehtml2 = document.createElement("aside")
+    asidehtml2.classList.add("filters-mobile")
+    const asidehtml = document.createElement("aside")
+    asidehtml.classList.add("filters")
+    const sectionhtml = document.createElement("section")
+    sectionhtml.classList.add("products")
+    main.appendChild(asidehtml2)
+    main.appendChild(asidehtml)
+    main.appendChild(sectionhtml)
+    reload()
+})
+main.appendChild(apply)
 
 })
 
@@ -475,4 +492,6 @@ for (let i = 0; i < storageList.length; i++) {
 }
 
 
+}
 
+reload()
