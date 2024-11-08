@@ -206,6 +206,24 @@ range.addEventListener("change", () =>{
     
 })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Filtros para telefono
 
 const filtersMobile = document.querySelector(".filters-mobile")
@@ -218,7 +236,103 @@ divisor.appendChild(filterButton)
 filterButton.addEventListener("click", ()=>{
     const main = document.querySelector("main")
     main.innerHTML= ""
+    const aside = document.createElement("aside")
+    aside.classList.add("filters-popup")
+    main.appendChild(aside)
+    // Filtros
+    var minValue = Infinity;
+
+ for (let i=0; i<products.length; i++){
+     if(minValue > products[i].price){
+         minValue = products[i].price
+     }
+
+ }
+
+var maxValue = 0;
+for (let i=0; i<products.length; i++){
+    if(maxValue < products[i].price){
+        maxValue = products[i].price
+    }
+
+}
+
+const title = document.createElement(`h3`)
+title.textContent = "Filtros de búsqueda"
+const filters = document.querySelector(`.filters-popup`)
+filters.appendChild(title)
+const values = document.createElement(`div`)
+const min = document.createElement(`span`)
+const max = document.createElement(`span`)
+values.appendChild(min)
+values.appendChild(max)
+filters.appendChild(values)
+values.classList.add("values")
+
+const range = document.createElement(`input`)
+range.classList.add("range")
+range.type = "range"
+range.min = minValue
+min.textContent = range.min
+range.max = maxValue
+max.textContent = range.max
+filters.appendChild(range)
+
+
+function check (){
+    for (let j=hide.length - 1; j>=0; j--){
+        if (hide.length > 0){
+            if (hide[j].price >= range.value){
+                products.push(hide[j])
+                hide.splice([j],1)
+    
+                
+        }
+
+        }
+        
+}
+}
+
+const hide = []
+range.addEventListener("change", () =>{
+    for (let i=products.length - 1; i>=0; i--){
+        if (products[i].price < range.value){
+            hide.push(products[i])
+            products.splice([i],1)
+        }
+    } 
+    check()
+    refresh()
+    minValue = range.value
+    min.textContent = minValue
+    
 })
+    
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Búsqueda
 
