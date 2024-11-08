@@ -269,6 +269,7 @@ main{
     gap: 20px;
     width: 100%;
     font-size: 25px;
+    padding: 20px;
 }
 
 .filters-popup .range{
