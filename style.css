@@ -295,4 +295,5 @@ body{
 .deleteFilters{
     border: none;
     font-size: 18px;
+    background-color: transparent;
 }
