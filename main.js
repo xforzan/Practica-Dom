@@ -331,7 +331,7 @@ apply.addEventListener("click", ()=>{
     content.appendChild(sectionhtml)
     reload()
 })
-main.appendChild(apply)
+
 
 // Búsqueda
 
@@ -467,7 +467,7 @@ for (let i = 0; i < storageList.length; i++) {
         refresh();
     });
 }
-
+aside.appendChild(apply)
 })
 
 
