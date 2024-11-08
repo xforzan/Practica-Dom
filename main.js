@@ -98,7 +98,7 @@ const products = [
 const hide = []
 const hidden = [];
 const hiddenProducts = [];
-
+const savedProducts = products
 const reload = () =>{
 
 const section = document.querySelector(`.products`)
@@ -372,7 +372,6 @@ filtersMobile.appendChild(divisor)
 divisor.appendChild(filterButton)
 
 filterButton.addEventListener("click", ()=>{
-    refresh()
     const main = document.querySelector("main")
     main.innerHTML= ""
     const aside = document.createElement("aside")
@@ -452,7 +451,7 @@ range.addEventListener("change", () =>{
 const apply = document.createElement("button")
 apply.classList.add("apply")
 apply.innerText = "Aplicar"
-apply.addEventListener("click", ()=>{
+apply.addEventListener("click", aplicar = ()=>{
     main.innerHTML = ""
     refresh()
     const content = document.createElement("div")
@@ -470,16 +469,34 @@ apply.addEventListener("click", ()=>{
     reload()
 
 })
-
+// Elimina filtrossssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
 const deleteFilters = document.createElement("button")
    deleteFilters.classList.add("deleteFilters")
    deleteFilters.innerText = "Eliminar filtros"
    deleteFilters.addEventListener("click", ()=>{
-        console.log("eliminados")
+    for(let i=0; i<hide.length; i++){
+        if(!products.includes(hide[i])){
+            products.push(hide[i])
+        }
+    }
+    for(let j=0; j<hidden.length; j++){
+        if(!products.includes(hidden[j])){
+            products.push(hidden[j])
+        }
+
+    }
+
+    for(let k=0; k<hiddenProducts.length; k++){
+        if(!products.includes(hiddenProducts[k])){
+            products.push(hiddenProducts[k])
+        }
+
+    }
+    aplicar()
 })
 
 
-// Filtor de búsqueda
+// Filtro de búsqueda
 
 
 const searchBar = document.createElement(`input`)
