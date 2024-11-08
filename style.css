@@ -287,3 +287,7 @@ body{
     justify-content: center;
 
 }
+
+.contenthidden{
+    display: none;
+}

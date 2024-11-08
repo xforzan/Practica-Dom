@@ -93,11 +93,13 @@ const products = [
     },
   ];
 
+
+// Vuelve a cargar el código
 const reload = () =>{
 
-//   Código 
 const section = document.querySelector(`.products`)
 
+// Refresca los productos
 refresh()
 
 function refresh (){
@@ -138,8 +140,8 @@ for (let  i=0; i<products.length; i++){
 
 }
 }
+// Filtro de precio
 var minValue = Infinity;
-// Filtros
 
  for (let i=0; i<products.length; i++){
      if(minValue > products[i].price){
@@ -212,6 +214,143 @@ range.addEventListener("change", () =>{
 
 
 
+// Filtros para otros dispositivos (iguales a los de móvil pero para pc, tablet etc)
+
+
+// Filtro de de búsqueda
+
+
+const searchBar = document.createElement(`input`)
+const label = document.createElement(`label`)
+searchBar.type = "text"
+searchBar.placeholder = "Escribe tu búsqueda"
+searchBar.classList.add("searchBar")
+label.innerText = "Barra de búsqueda:"
+filters.appendChild(label)
+filters.appendChild(searchBar)
+
+
+const hidden = [];
+
+function check2() {
+    for (let j = hidden.length - 1; j >= 0; j--) {
+        if (hidden[j].name.toLowerCase().includes(searchBar.value.toLocaleLowerCase())) {
+            products.push(hidden[j]);
+            hidden.splice(j, 1);
+        }
+    }
+}
+
+searchBar.addEventListener("input", () => {
+    // Verifica si el campo de búsqueda no está vacío
+    if (searchBar.value == "") {
+        refresh()
+    }
+        console.log(searchBar.value)
+        for (let i = products.length - 1; i >= 0; i--) {
+            // Si el nombre del producto contiene el valor de búsqueda
+            if (!products[i].name.toLowerCase().includes(searchBar.value.toLowerCase())) {
+                 hidden.push(products[i]);
+                 products.splice(i, 1);
+                console.log("NO-incluye");
+            }
+        }
+        check2();
+    refresh();
+});
+
+
+// Filtro de capacidad
+
+
+const labelStorage = document.createElement('label')
+labelStorage.innerText= "Almacenamiento:"
+
+filters.appendChild(labelStorage)
+
+const storageList =[]
+
+for (let i=0; i<products.length; i++){
+    if(products[i].storage !== ''){
+    if(!storageList.includes(products[i].storage) )
+        storageList.push(products[i].storage)
+}
+}
+
+
+storageList.sort((a, b) => { 
+    const convertToGB = (size) => {
+        if (size.endsWith("TB")) {
+            return parseFloat(size) * 1024;
+        } else if (size.endsWith("GB")) {
+            return parseFloat(size);
+        }
+        return 0;
+    };
+    
+    return convertToGB(a) - convertToGB(b);
+});
+
+console.log(storageList)
+
+const storageFilters = document.createElement('div')
+storageFilters.classList.add("storageFilters")
+filters.appendChild(storageFilters)
+
+
+
+const hiddenProducts = [];
+
+
+
+
+for (let i = 0; i < storageList.length; i++) {
+    const group = document.createElement('div')
+    group.classList.add('group')
+    const storage = document.createElement('input');
+    storage.type = "checkbox";
+    storage.id = storageList[i];
+    storage.name = storageList[i];
+    storage.checked = true
+    
+    const labelStorage = document.createElement('label');
+    labelStorage.htmlFor = storageList[i];
+    labelStorage.innerText = storageList[i];
+
+    group.appendChild(storage)
+    group.appendChild(labelStorage)
+
+    storageFilters.appendChild(group);
+
+    storage.addEventListener("change", () => {
+
+        for (let j = 0; j < storageList.length; j++) {
+            const checkbox = document.getElementById(storageList[j]);
+
+            if (checkbox.checked) {
+
+                for (let l = hiddenProducts.length - 1; l >= 0; l--) {
+                    if (hiddenProducts[l] && hiddenProducts[l].storage === checkbox.id) {
+                        products.push(hiddenProducts[l]);
+                        hiddenProducts.splice(l, 1);
+                    }
+                }
+            } else {
+
+                for (let k = products.length - 1; k >= 0; k--) {
+                    if (products[k] && products[k].storage === checkbox.id) {
+                        hiddenProducts.push(products[k]);
+                        products.splice(k, 1);
+                    }
+                }
+            }
+        }
+        
+
+
+        refresh();
+    });
+}
 
 
 
@@ -220,13 +359,7 @@ range.addEventListener("change", () =>{
 
 
 
-
-
-
-
-
-
-// Filtros para telefono
+// Todos los filtros para teléfono
 
 const filtersMobile = document.querySelector(".filters-mobile")
 const divisor = document.createElement("div")
@@ -333,7 +466,7 @@ apply.addEventListener("click", ()=>{
 })
 
 
-// Búsqueda
+// Filtor de búsqueda
 
 
 const searchBar = document.createElement(`input`)
@@ -376,7 +509,7 @@ searchBar.addEventListener("input", () => {
 });
 
 
-// Capacidad
+// Filtro de capacidad
 
 
 const labelStorage = document.createElement('label')
@@ -470,166 +603,8 @@ for (let i = 0; i < storageList.length; i++) {
 aside.appendChild(apply)
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Búsqueda
-
-
-const searchBar = document.createElement(`input`)
-const label = document.createElement(`label`)
-searchBar.type = "text"
-searchBar.placeholder = "Escribe tu búsqueda"
-searchBar.classList.add("searchBar")
-label.innerText = "Barra de búsqueda:"
-filters.appendChild(label)
-filters.appendChild(searchBar)
-
-
-const hidden = [];
-
-function check2() {
-    for (let j = hidden.length - 1; j >= 0; j--) {
-        if (hidden[j].name.toLowerCase().includes(searchBar.value.toLocaleLowerCase())) {
-            products.push(hidden[j]);
-            hidden.splice(j, 1);
-        }
-    }
-}
-
-searchBar.addEventListener("input", () => {
-    // Verifica si el campo de búsqueda no está vacío
-    if (searchBar.value == "") {
-        refresh()
-    }
-        console.log(searchBar.value)
-        for (let i = products.length - 1; i >= 0; i--) {
-            // Si el nombre del producto contiene el valor de búsqueda
-            if (!products[i].name.toLowerCase().includes(searchBar.value.toLowerCase())) {
-                 hidden.push(products[i]);
-                 products.splice(i, 1);
-                console.log("NO-incluye");
-            }
-        }
-        check2();
-    refresh();
-});
-
-
-// Capacidad
-
-
-const labelStorage = document.createElement('label')
-labelStorage.innerText= "Almacenamiento:"
-
-filters.appendChild(labelStorage)
-
-const storageList =[]
-
-for (let i=0; i<products.length; i++){
-    if(products[i].storage !== ''){
-    if(!storageList.includes(products[i].storage) )
-        storageList.push(products[i].storage)
-}
 }
 
 
-storageList.sort((a, b) => { 
-    const convertToGB = (size) => {
-        if (size.endsWith("TB")) {
-            return parseFloat(size) * 1024;
-        } else if (size.endsWith("GB")) {
-            return parseFloat(size);
-        }
-        return 0;
-    };
-    
-    return convertToGB(a) - convertToGB(b);
-});
-
-console.log(storageList)
-
-const storageFilters = document.createElement('div')
-storageFilters.classList.add("storageFilters")
-filters.appendChild(storageFilters)
-
-
-
-const hiddenProducts = [];
-
-
-
-
-for (let i = 0; i < storageList.length; i++) {
-    const group = document.createElement('div')
-    group.classList.add('group')
-    const storage = document.createElement('input');
-    storage.type = "checkbox";
-    storage.id = storageList[i];
-    storage.name = storageList[i];
-    storage.checked = true
-    
-    const labelStorage = document.createElement('label');
-    labelStorage.htmlFor = storageList[i];
-    labelStorage.innerText = storageList[i];
-
-    group.appendChild(storage)
-    group.appendChild(labelStorage)
-
-    storageFilters.appendChild(group);
-
-    storage.addEventListener("change", () => {
-
-        for (let j = 0; j < storageList.length; j++) {
-            const checkbox = document.getElementById(storageList[j]);
-
-            if (checkbox.checked) {
-
-                for (let l = hiddenProducts.length - 1; l >= 0; l--) {
-                    if (hiddenProducts[l] && hiddenProducts[l].storage === checkbox.id) {
-                        products.push(hiddenProducts[l]);
-                        hiddenProducts.splice(l, 1);
-                    }
-                }
-            } else {
-
-                for (let k = products.length - 1; k >= 0; k--) {
-                    if (products[k] && products[k].storage === checkbox.id) {
-                        hiddenProducts.push(products[k]);
-                        products.splice(k, 1);
-                    }
-                }
-            }
-        }
-        
-
-
-        refresh();
-    });
-}
-
-
-}
-
+// Carga la página inicialmente
 reload()
