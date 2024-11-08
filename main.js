@@ -308,8 +308,13 @@ range.addEventListener("change", () =>{
     min.textContent = minValue
     
 })
-    
+
+
+
+
+
 })
+
 
 
 

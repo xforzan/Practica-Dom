@@ -253,3 +253,24 @@ main{
         justify-content: center;
     }
 }
+
+
+
+
+
+
+/* Filtros para móvil */
+
+
+
+.filters-popup{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    font-size: 25px;
+}
+
+.filters-popup .range{
+    width: 100%;
+}
