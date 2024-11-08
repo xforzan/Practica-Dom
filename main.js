@@ -95,6 +95,10 @@ const products = [
 
 
 // Vuelve a cargar el código
+const hide = []
+const hidden = [];
+const hiddenProducts = [];
+
 const reload = () =>{
 
 const section = document.querySelector(`.products`)
@@ -195,7 +199,7 @@ function check (){
 }
 }
 
-const hide = []
+// const hide = [] AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
 range.addEventListener("change", () =>{
     for (let i=products.length - 1; i>=0; i--){
         if (products[i].price < range.value){
@@ -230,7 +234,7 @@ filters.appendChild(label)
 filters.appendChild(searchBar)
 
 
-const hidden = [];
+// const hidden = []; AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
 
 function check2() {
     for (let j = hidden.length - 1; j >= 0; j--) {
@@ -291,7 +295,6 @@ storageList.sort((a, b) => {
     return convertToGB(a) - convertToGB(b);
 });
 
-console.log(storageList)
 
 const storageFilters = document.createElement('div')
 storageFilters.classList.add("storageFilters")
@@ -299,7 +302,7 @@ filters.appendChild(storageFilters)
 
 
 
-const hiddenProducts = [];
+// const hiddenProducts = []; AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
 
 
 
@@ -369,6 +372,7 @@ filtersMobile.appendChild(divisor)
 divisor.appendChild(filterButton)
 
 filterButton.addEventListener("click", ()=>{
+    refresh()
     const main = document.querySelector("main")
     main.innerHTML= ""
     const aside = document.createElement("aside")
@@ -429,7 +433,7 @@ function check (){
 }
 }
 
-const hide = []
+
 range.addEventListener("change", () =>{
     for (let i=products.length - 1; i>=0; i--){
         if (products[i].price < range.value){
@@ -450,6 +454,7 @@ apply.classList.add("apply")
 apply.innerText = "Aplicar"
 apply.addEventListener("click", ()=>{
     main.innerHTML = ""
+    refresh()
     const content = document.createElement("div")
     content.classList.add("content")
     const asidehtml2 = document.createElement("aside")
@@ -463,6 +468,14 @@ apply.addEventListener("click", ()=>{
     content.appendChild(asidehtml)
     content.appendChild(sectionhtml)
     reload()
+
+})
+
+const deleteFilters = document.createElement("button")
+   deleteFilters.classList.add("deleteFilters")
+   deleteFilters.innerText = "Eliminar filtros"
+   deleteFilters.addEventListener("click", ()=>{
+        console.log("eliminados")
 })
 
 
@@ -479,11 +492,11 @@ filters.appendChild(label)
 filters.appendChild(searchBar)
 
 
-const hidden = [];
+
 
 function check2() {
     for (let j = hidden.length - 1; j >= 0; j--) {
-        if (hidden[j].name.toLowerCase().includes(searchBar.value.toLocaleLowerCase())) {
+        if (hidden[j].name.toLowerCase().includes(searchBar.value.toLocaleLowerCase()) && !hidden[j].name.toLowerCase()) {
             products.push(hidden[j]);
             hidden.splice(j, 1);
         }
@@ -495,13 +508,11 @@ searchBar.addEventListener("input", () => {
     if (searchBar.value == "") {
         refresh()
     }
-        console.log(searchBar.value)
         for (let i = products.length - 1; i >= 0; i--) {
             // Si el nombre del producto contiene el valor de búsqueda
             if (!products[i].name.toLowerCase().includes(searchBar.value.toLowerCase())) {
                  hidden.push(products[i]);
                  products.splice(i, 1);
-                console.log("NO-incluye");
             }
         }
         check2();
@@ -517,7 +528,7 @@ labelStorage.innerText= "Almacenamiento:"
 
 filters.appendChild(labelStorage)
 
-const storageList =[]
+
 
 for (let i=0; i<products.length; i++){
     if(products[i].storage !== ''){
@@ -540,15 +551,13 @@ storageList.sort((a, b) => {
     return convertToGB(a) - convertToGB(b);
 });
 
-console.log(storageList)
-
 const storageFilters = document.createElement('div')
 storageFilters.classList.add("storageFilters")
 filters.appendChild(storageFilters)
 
 
 
-const hiddenProducts = [];
+
 
 
 
@@ -601,6 +610,7 @@ for (let i = 0; i < storageList.length; i++) {
     });
 }
 aside.appendChild(apply)
+aside.appendChild(deleteFilters)
 })
 
 }

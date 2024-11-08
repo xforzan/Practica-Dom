@@ -291,3 +291,8 @@ body{
 .contenthidden{
     display: none;
 }
+
+.deleteFilters{
+    border: none;
+    font-size: 18px;
+}
