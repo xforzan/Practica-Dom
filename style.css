@@ -2,8 +2,27 @@
 
 *{
     margin: 0;
-    padding:0;
+    padding: 0;
     box-sizing: border-box;
+    font-family: "DM Sans", sans-serif;
+    list-style: none;
+    text-decoration: none;
+    font-weight: 500;
+
+}
+*::selection{
+    background-color: var(--grey);
+    color: var(--main-color);
+
+}
+:root{
+    --main-color: #000000;
+    --grey: #c7c7c7;
+    --radius: 30px;
+}
+
+a{
+    color: var(--main-color);
 }
 
 body{
@@ -296,4 +315,192 @@ body{
     border: none;
     font-size: 18px;
     background-color: transparent;
+}
+
+
+/* Header */
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+    gap: 40px;
+    border-bottom: 1px solid var(--grey);
+    position: sticky;
+    background-color: white;
+    top: 0;
+    z-index: 1;
+    font-size: 20px;
+}
+
+
+.menu{
+    display: none;
+    cursor: pointer;
+}
+
+.logo img{
+    width: 100%;
+    height: auto;
+}
+
+.logo{
+    display: flex;
+    width: 20%;
+    min-width: 150px;
+}
+
+.navigation{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+nav ul {
+    display: flex;
+    justify-items: center;
+    gap: 40px;
+}
+
+nav ul li{
+    padding: 5px;
+    color: var(--grey);
+}
+
+nav ul li:hover{
+    background-color: rgba(0, 0, 0, 0.096);
+    border-radius: var(--radius);
+}
+
+.carrito::before{
+    content: url(/Assets/Icons/Cart.svg);
+}
+
+.acceso:before{
+    content: url(/Assets/Icons/Login.svg);
+}
+
+.acceso, .carrito{
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width:535px) {
+    .navigation{
+        display: none;
+    }
+
+    .menu{
+        display: block;
+    }
+}
+
+
+
+
+/* FOOTER */
+
+footer{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    text-align: center;
+    flex-basis: 20%;
+    max-width: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 20px;
+    gap: 20px;
+    border-top: 1px solid var(--grey);
+    color: white;
+    background-color: var(--main-color);
+}
+
+footer ul{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-basis: 20%;
+    max-width: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 20px;
+}
+
+footer ul li:first-child{
+    font-weight: bold;
+    font-size: 25px;
+}
+
+footer a{
+     color: white;
+}
+
+.sobre-nosotros{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-basis: 20%;
+    max-width: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 20px;
+    width: 100%;
+
+}
+
+.sobre-nosotros img{
+    width: 50%;
+    max-width: 250px;
+    min-width: 100px;
+}
+
+.sobre-nosotros p{
+    text-align: center;
+    font-size: 15px;
+}
+
+.copyright{
+    width: 100%;
+}
+
+@media (max-width:549px) {
+    footer ul,footer, .sobre-nosotros {
+        min-width: 100%;
+    }
+    
+}
+
+.instagram::before{
+    content: url(/Assets/Icons/Instagram-logo.svg);
+}
+
+.tiktok::before{
+    content: url(/Assets/Icons/Tiktok-logo.svg);
+}
+
+.facebook::before{
+    content: url(/Assets/Icons/Facebook-logo.svg);
+}
+
+.x::before{
+    content: url(/Assets/Icons/X-logo.svg);
+}
+
+.instagram, .tiktok, .facebook, .x{
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+
+}
+
+.metodos-de-pago{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
 }
