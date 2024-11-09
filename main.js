@@ -106,6 +106,8 @@ const section = document.querySelector(`.products`)
 // Refresca los productos
 refresh()
 
+
+// Añade los productos a HTML 
 function refresh (){
     section.innerHTML="";
 for (let  i=0; i<products.length; i++){
@@ -144,7 +146,10 @@ for (let  i=0; i<products.length; i++){
 
 }
 }
-// Filtro de precio
+
+
+// Filtros para otros dispositivos (iguales a los de móvil pero para pc, tablet etc)
+// Filtro de precios
 var minValue = Infinity;
 
  for (let i=0; i<products.length; i++){
@@ -199,7 +204,7 @@ function check (){
 }
 }
 
-// const hide = [] AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+
 range.addEventListener("change", () =>{
     for (let i=products.length - 1; i>=0; i--){
         if (products[i].price < range.value){
@@ -215,12 +220,6 @@ range.addEventListener("change", () =>{
 })
 
 
-
-
-
-// Filtros para otros dispositivos (iguales a los de móvil pero para pc, tablet etc)
-
-
 // Filtro de de búsqueda
 
 
@@ -234,7 +233,7 @@ filters.appendChild(label)
 filters.appendChild(searchBar)
 
 
-// const hidden = []; AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+
 
 function check2() {
     for (let j = hidden.length - 1; j >= 0; j--) {
@@ -302,9 +301,6 @@ filters.appendChild(storageFilters)
 
 
 
-// const hiddenProducts = []; AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
-
-
 
 
 for (let i = 0; i < storageList.length; i++) {
@@ -362,7 +358,7 @@ for (let i = 0; i < storageList.length; i++) {
 
 
 
-// Todos los filtros para teléfono
+// Todos los filtros anteriores pero para teléfono
 
 const filtersMobile = document.querySelector(".filters-mobile")
 const divisor = document.createElement("div")
@@ -469,7 +465,7 @@ apply.addEventListener("click", aplicar = ()=>{
     reload()
 
 })
-// Elimina filtrossssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+// Elimina filtros
 const deleteFilters = document.createElement("button")
    deleteFilters.classList.add("deleteFilters")
    deleteFilters.innerText = "Eliminar filtros"

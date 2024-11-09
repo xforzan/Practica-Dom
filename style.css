@@ -38,6 +38,8 @@ body{
     padding: 5px;
 }
 
+
+/* Filtros */
 .filters-mobile{
     display: none;
     justify-content: center;
@@ -55,32 +57,6 @@ body{
 
 .filters-mobile div button::before{
     content: url(./Assets/tune_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg);
-}
-
-
-
-.products{
-    width: 75%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding-inline: 20px;
-}
-
-.product{
-    display: flex;
-    justify-content: left;
-    flex-direction: column;
-    background-color: white;
-    border-radius: 30px;
-    gap: 10px;
-    padding: 20px;
-    flex-basis: 150px;
-    min-height: 490px;
-    box-shadow: 0px 0px 10px 1px #00000046;
-    transition: 0.5s;
 }
 
 .filters{
@@ -158,6 +134,35 @@ body{
 .values span::after{
     content: " €";
 }
+
+
+/* Productos */
+
+.products{
+    width: 75%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-inline: 20px;
+}
+
+.product{
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 30px;
+    gap: 10px;
+    padding: 20px;
+    flex-basis: 150px;
+    min-height: 490px;
+    box-shadow: 0px 0px 10px 1px #00000046;
+    transition: 0.5s;
+}
+
+
 
 
 .product:hover{
@@ -399,7 +404,6 @@ nav ul li:hover{
 
 
 
-
 /* FOOTER */
 
 footer{
@@ -416,6 +420,7 @@ footer{
     border-top: 1px solid var(--grey);
     color: white;
     background-color: var(--main-color);
+    margin-top: 10px;
 }
 
 footer ul{
